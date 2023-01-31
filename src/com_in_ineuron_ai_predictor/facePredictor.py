@@ -148,7 +148,7 @@ class FacePredictor():
                             print("Recognized: {} <{:.2f}>".format(name, proba * 100))
                         # Start tracking
                         tracker = dlib.correlation_tracker()
-                        rect = dlib.rectangle(bbox[0], bbox[1], bbox[2], bbox[3])
+                        rect = dlib.rectangle(int(bbox[0]), int(bbox[1]), int(bbox[2]), int(bbox[3]))
                         tracker.start_track(rgb, rect)
                         trackers.append(tracker)
                         texts.append(text)
