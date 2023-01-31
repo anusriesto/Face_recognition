@@ -92,6 +92,7 @@ class FacePredictor():
 
         # Start streaming and recording
         cap = cv2.VideoCapture(0)
+
         frame_width = int(cap.get(3))
         frame_height = int(cap.get(4))
         print(str(frame_width) + " : " + str(frame_height))

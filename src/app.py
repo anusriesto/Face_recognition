@@ -85,7 +85,7 @@ class RegistrationModule:
         self.mobileNoTxt = tk.Entry(self.window, width=20, bg="white", fg="black", font=('times', 15, ' bold '))
         self.mobileNoTxt.place(x=575, y=140)
 
-        lbl3 = tk.Label(self.window, text="Notification : ", width=15, fg="white", bg="#363e75", height=2,
+        lbl3 = tk.Label(self.window, text="Notification: ", width=15, fg="white", bg="#363e75", height=2,
                         font=('times', 15))
         self.message = tk.Label(self.window, text="", bg="white", fg="black", width=30, height=1,
                                 activebackground="#e47911", font=('times', 15))

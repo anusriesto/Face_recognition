@@ -166,7 +166,7 @@ class FaceDetectorMtcnN():
 #     return parser.parse_args(argv)
 #
 #
-# if __name__ == '__main__':
-#     # main(parse_arguments(sys.argv[1:]))
-#     detector = FaceDetectorMtcnN(parse_arguments(["../test1.jpg"]))
-#     detector.run()
+if __name__ == '__main__':
+    # main(parse_arguments(sys.argv[1:]))
+    detector = FaceDetectorMtcnN(parse_arguments(["../test1.jpg"]))
+    detector.run()

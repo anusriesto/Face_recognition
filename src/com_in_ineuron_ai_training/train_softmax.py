@@ -38,7 +38,7 @@ class TrainFaceRecogModel:
         EPOCHS = 5
         input_shape = embeddings.shape[1]
 
-        # Build sofmax classifier
+        # Build softmax classifier
         softmax = SoftMax(input_shape=(input_shape,), num_classes=num_classes)
         model = softmax.build()
 
