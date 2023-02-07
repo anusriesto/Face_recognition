@@ -23,7 +23,7 @@ class TrainingDataCollector:
 
     def collectImagesFromCamera(self):
         # initialize video stream
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(1)
 
         # Setup some useful var
         faces = 0

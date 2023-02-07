@@ -6,6 +6,8 @@ import argparse
 import logging
 import tkinter as tk
 from tkinter import *
+from functools import partial
+
 
 
 import tkinter.font as font
@@ -49,16 +51,13 @@ class RegistrationModule:
         self.window.grid_rowconfigure(0, weight=1)
         self.window.grid_columnconfigure(0, weight=1)
 
-        header = tk.Label(self.window, text="Employee Monitoring Registration", width=80, height=2, fg="white", bg="#363e75",
+        header = tk.Label(self.window, text="CPF Employee Monitoring Registration", width=80, height=2, fg="white", bg="#363e75",
                           font=('times', 18, 'bold', 'underline'))
         header.place(x=0, y=0)
-        clientID = tk.Label(self.window, text="Client ID", width=10, height=2, fg="white", bg="#363e75", font=('times', 15))
-        clientID.place(x=80, y=80)
+
 
         displayVariable = StringVar()
-        self.clientIDTxt = tk.Entry(self.window, width=20, text=displayVariable, bg="white", fg="black",
-                               font=('times', 15, 'bold'))
-        self.clientIDTxt.place(x=205, y=80)
+
 
         empID = tk.Label(self.window, text="EmpID", width=10, fg="white", bg="#363e75", height=2, font=('times', 15))
         empID.place(x=450, y=80)
@@ -78,12 +77,9 @@ class RegistrationModule:
         self.emailIDTxt = tk.Entry(self.window, width=20, bg="white", fg="black", font=('times', 15, ' bold '))
         self.emailIDTxt.place(x=575, y=140)
 
-        mobileNo = tk.Label(self.window, text="Mobile No :", width=10, fg="white", bg="#363e75", height=2,
-                            font=('times', 15))
-        mobileNo.place(x=450, y=140)
 
-        self.mobileNoTxt = tk.Entry(self.window, width=20, bg="white", fg="black", font=('times', 15, ' bold '))
-        self.mobileNoTxt.place(x=575, y=140)
+
+
 
         lbl3 = tk.Label(self.window, text="Notification: ", width=15, fg="white", bg="#363e75", height=2,
                         font=('times', 15))
@@ -96,13 +92,7 @@ class RegistrationModule:
                            font=('times', 15))
         self.message.place(x=205, y=260)
 
-        # lbl3 = tk.Label(self.window, text="Attendance : ", width=15, fg="white", bg="#363e75", height=2,
-        #                 font=('times', 15))
-        # lbl3.place(x=80, y=440)
-        #
-        # self.message2 = tk.Label(self.window, text="", fg="#e47911", bg="#bbc7d4", activeforeground="#f8f9fa", width=52, height=2,
-        #                     font=('times', 15))
-        # self.message2.place(x=250, y=440)
+
 
         takeImg = tk.Button(self.window, text="Take Images", command=self.collectUserImageForRegistration, fg="white", bg="#363e75", width=15,
                             height=2,
@@ -114,11 +104,11 @@ class RegistrationModule:
                              activebackground="#118ce1", font=('times', 15, ' bold '))
         trainImg.place(x=350, y=350)
 
-        # predictImg = tk.Button(self.window, text="Predict", command=self.makePrediction, fg="white", bg="#363e75",
-        #                      width=15,
-        #                      height=2,
-        #                      activebackground="#118ce1", font=('times', 15, ' bold '))
-        # predictImg.place(x=600, y=350)
+        predictImg = tk.Button(self.window, text="Predict", command=self.makePrediction, fg="white", bg="#363e75",
+                             width=15,
+                             height=2,
+                             activebackground="#118ce1", font=('times', 15, ' bold '))
+        predictImg.place(x=600, y=350)
 
         quitWindow = tk.Button(self.window, text="Quit", command=self.close_window, fg="white", bg="#363e75", width=10, height=2,
                                activebackground="#118ce1", font=('times', 15, 'bold'))
@@ -174,7 +164,7 @@ class RegistrationModule:
         return False
 
     def collectUserImageForRegistration(self):
-        clientIDVal = (self.clientIDTxt.get())
+
         empIDVal = self.empIDTxt.get()
         name = (self.empNameTxt.get())
         ap = argparse.ArgumentParser()

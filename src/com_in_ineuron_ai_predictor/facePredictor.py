@@ -154,7 +154,7 @@ class FacePredictor():
                         texts.append(text)
 
                         y = bbox[1] - 10 if bbox[1] - 10 > 10 else bbox[1] + 10
-                        cv2.putText(frame, text, (bbox[0], y), cv2.FONT_HERSHEY_SIMPLEX, 0.95, (255, 255, 255), 1)
+                        cv2.putText(frame, text, (bbox[0], y), cv2.FONT_HERSHEY_SIMPLEX, 0.95, (0, 255, 255), 1)
                         cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (179, 0, 149), 4)
             else:
                 for tracker, text in zip(trackers, texts):
@@ -167,7 +167,7 @@ class FacePredictor():
                     endY = int(pos.bottom())
 
                     cv2.rectangle(frame, (startX, startY), (endX, endY), (179, 0, 149), 4)
-                    cv2.putText(frame, text, (startX, startY - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.95, (255, 255, 255), 1)
+                    cv2.putText(frame, text, (startX, startY - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.95, (0,255, 255), 1)
 
             cv2.imshow("Frame", frame)
             key = cv2.waitKey(1) & 0xFF
