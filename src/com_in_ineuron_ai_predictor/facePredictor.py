@@ -5,6 +5,7 @@ from src.com_in_ineuron_ai_detectfaces_mtcnn.Configurations import Configuration
 import warnings
 import sys
 import dlib
+import datetime
 # from src.insightface.deploy import face_model
 
 warnings.filterwarnings('ignore')
@@ -16,6 +17,7 @@ import face_preprocess
 import numpy as np
 import pickle
 import cv2
+import pandas as pd
 
 
 class FacePredictor():
@@ -98,7 +100,8 @@ class FacePredictor():
         print(str(frame_width) + " : " + str(frame_height))
         save_width = 800
         save_height = int(800 / frame_width * frame_height)
-
+        all_text = []
+        all_times = []
         while True:
             ret, frame = cap.read()
             frames += 1
@@ -108,6 +111,9 @@ class FacePredictor():
             if frames % 3 == 0:
                 trackers = []
                 texts = []
+                all_text.append(texts)
+                times=[]
+                all_times.append(times)
 
                 bboxes =  self.detector.detect_faces(frame)
 
@@ -145,6 +151,7 @@ class FacePredictor():
                         if cos_similarity < cosine_threshold and proba > proba_threshold:
                             name =  self.le.classes_[j]
                             text = "{}".format(name)
+                            current_time = datetime.datetime.now()
                             print("Recognized: {} <{:.2f}>".format(name, proba * 100))
                         # Start tracking
                         tracker = dlib.correlation_tracker()
@@ -152,10 +159,16 @@ class FacePredictor():
                         tracker.start_track(rgb, rect)
                         trackers.append(tracker)
                         texts.append(text)
+                        times.append(current_time)
+
+
 
                         y = bbox[1] - 10 if bbox[1] - 10 > 10 else bbox[1] + 10
                         cv2.putText(frame, text, (bbox[0], y), cv2.FONT_HERSHEY_SIMPLEX, 0.95, (0, 255, 255), 1)
                         cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (179, 0, 149), 4)
+
+                # print(texts)
+                # print(times)
             else:
                 for tracker, text in zip(trackers, texts):
                     pos = tracker.get_position()
@@ -168,6 +181,10 @@ class FacePredictor():
 
                     cv2.rectangle(frame, (startX, startY), (endX, endY), (179, 0, 149), 4)
                     cv2.putText(frame, text, (startX, startY - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.95, (0,255, 255), 1)
+            # print(all_text)
+            # print(all_times)
+
+
 
             cv2.imshow("Frame", frame)
             key = cv2.waitKey(1) & 0xFF
@@ -175,5 +192,9 @@ class FacePredictor():
             if key == ord("q"):
                 break
 
+        df = pd.DataFrame(list(zip(all_text, all_times)),
+                          columns=['Name', 'Time'])
+
+        df.to_csv(r"C:\Users\Anuj Srivastava\OneDrive\Desktop\report.csv")
         cap.release()
         cv2.destroyAllWindows()

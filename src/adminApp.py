@@ -25,7 +25,7 @@ class RegistrationModule:
         # helv36 = tk.Font(family='Helvetica', size=36, weight='bold')
         self.window.title("CPF FACE RECOGNITION ADMIN")
         photo = PhotoImage(r'C:\Users\Anuj Srivastava\OneDrive\Pictures\cpf.png')
-        self.window.iconphoto(False,photo)
+
 
         # this removes the maximize button
         self.window.resizable(0, 0)
@@ -40,7 +40,7 @@ class RegistrationModule:
 
         self.window.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
         # window.geometry('880x600')
-        self.window.configure(background='#FF0000')
+        self.window.configure(background='#808080')
 
         # window.attributes('-fullscreen', True)
 
@@ -49,7 +49,8 @@ class RegistrationModule:
 
 
 
-        header = tk.Label(self.window, text="CPF Employee Monitoring Registration ADMIM", width=80, height=2, fg="#FFFF00", bg="#363e75",
+
+        header = tk.Label(self.window, text="CPF Employee Monitoring Registration ADMIN", width=80, height=2, fg="#006400", bg="#FFFFFF",
                           font=('times', 18, 'bold', 'underline'))
         header.place(x=0, y=0)
 
@@ -57,19 +58,19 @@ class RegistrationModule:
         displayVariable = StringVar()
 
 
-        empID = tk.Label(self.window, text="EmpID", width=10, fg="white", bg="#363e75", height=2, font=('times', 15))
-        empID.place(x=450, y=80)
+        empID = tk.Label(self.window, text="EmpID", width=10, fg="#006400", bg="#FFFFFF", height=2, font=('times', 15))
+        empID.place(x=250, y=80)
 
         self.empIDTxt = tk.Entry(self.window, width=20, bg="white", fg="black", font=('times', 15, ' bold '))
-        self.empIDTxt.place(x=575, y=80)
+        self.empIDTxt.place(x=375, y=80)
 
-        empName = tk.Label(self.window, text="Emp Name", width=10, fg="white", bg="#363e75", height=2, font=('times', 15))
+        empName = tk.Label(self.window, text="Emp Name", width=10, fg="#006400", bg="#FFFFFF", height=2, font=('times', 15))
         empName.place(x=80, y=140)
 
         self.empNameTxt = tk.Entry(self.window, width=20, bg="white", fg="black", font=('times', 15, ' bold '))
         self.empNameTxt.place(x=205, y=140)
 
-        emailId = tk.Label(self.window, text="Email ID :", width=10, fg="white", bg="#363e75", height=2, font=('times', 15))
+        emailId = tk.Label(self.window, text="Email ID :", width=10, fg="#006400", bg="#FFFFFF", height=2, font=('times', 15))
         emailId.place(x=450, y=140)
 
         self.emailIDTxt = tk.Entry(self.window, width=20, bg="white", fg="black", font=('times', 15, ' bold '))
@@ -92,15 +93,15 @@ class RegistrationModule:
 
 
 
-        takeImg = tk.Button(self.window, text="Take Images", command=self.collectUserImageForRegistration, fg="white", bg="#363e75", width=15,
+        takeImg = tk.Button(self.window, text="Take Images", command=self.collectUserImageForRegistration, fg="#006400", bg="#FFFFFF", width=15,
                             height=2,
                             activebackground="#118ce1", font=('times', 15, ' bold '))
         takeImg.place(x=80, y=350)
 
-        trainImg = tk.Button(self.window, text="Train Images", command=self.trainModel, fg="white", bg="#363e75", width=15,
+        trainImg = tk.Button(self.window, text="Train Images", command=self.trainModel, fg="#006400", bg="#FFFFFF", width=15,
                              height=2,
                              activebackground="#118ce1", font=('times', 15, ' bold '))
-        trainImg.place(x=350, y=350)
+        trainImg.place(x=550, y=350)
 
 
 
