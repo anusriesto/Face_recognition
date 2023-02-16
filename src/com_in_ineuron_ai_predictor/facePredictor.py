@@ -91,6 +91,7 @@ class FacePredictor():
         trackers = []
         texts = []
         frames = 0
+        image_no = 0
 
         # Start streaming and recording
         cap = cv2.VideoCapture(0)
@@ -119,6 +120,9 @@ class FacePredictor():
 
                 if len(bboxes) != 0:
 
+
+
+
                     for bboxe in bboxes:
                         bbox = bboxe['box']
                         bbox = np.array([bbox[0], bbox[1], bbox[0] + bbox[2], bbox[1] + bbox[3]])
@@ -134,6 +138,10 @@ class FacePredictor():
                         embedding = self.embedding_model.get_feature(nimg).reshape(1, -1)
 
                         text = "Unknown"
+
+
+
+
 
                         # Predict class
                         preds =  self.model.predict(embedding)
@@ -181,6 +189,11 @@ class FacePredictor():
 
                     cv2.rectangle(frame, (startX, startY), (endX, endY), (179, 0, 149), 4)
                     cv2.putText(frame, text, (startX, startY - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.95, (0,255, 255), 1)
+
+
+                    name = r'C:\Users\Anuj Srivastava\OneDrive\Desktop\save_img/' + str(image_no) + '.jpg'
+                    cv2.imwrite(name, frame)
+                    image_no += 1;
             # print(all_text)
             # print(all_times)
 
@@ -196,5 +209,7 @@ class FacePredictor():
                           columns=['Name', 'Time'])
 
         df.to_csv(r"C:\Users\Anuj Srivastava\OneDrive\Desktop\report.csv")
+
+
         cap.release()
         cv2.destroyAllWindows()
