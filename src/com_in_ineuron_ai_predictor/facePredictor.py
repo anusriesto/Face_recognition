@@ -103,6 +103,7 @@ class FacePredictor():
         save_height = int(800 / frame_width * frame_height)
         all_text = []
         all_times = []
+        all_name=[]
         while True:
             ret, frame = cap.read()
             frames += 1
@@ -112,10 +113,15 @@ class FacePredictor():
             if frames % 3 == 0:
                 trackers = []
                 texts = []
+                names=[]
+                pnames=[]
                 all_text.append(texts)
                 times=[]
                 all_times.append(times)
-
+                all_name.append(names)
+                now= datetime.datetime.now()
+                current_time_w= now.strftime("%d_%m_%Y_%H_%M_%S")
+                current_time_s= datetime.datetime.now()
                 bboxes =  self.detector.detect_faces(frame)
 
                 if len(bboxes) != 0:
@@ -191,9 +197,12 @@ class FacePredictor():
                     cv2.putText(frame, text, (startX, startY - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.95, (0,255, 255), 1)
 
 
-                    name = r'C:\Users\Anuj Srivastava\OneDrive\Desktop\save_img/' + str(image_no) + '.jpg'
+                    # name = r'C:\Users\Anuj Srivastava\OneDrive\Desktop\save_img/' + str(image_no) + '.jpg'
+                    name = r'%s.jpg' %names
+                    pnames.append(name)
                     cv2.imwrite(name, frame)
-                    image_no += 1;
+                    # image_no += 1;
+
             # print(all_text)
             # print(all_times)
 
@@ -205,8 +214,8 @@ class FacePredictor():
             if key == ord("q"):
                 break
 
-        df = pd.DataFrame(list(zip(all_text, all_times)),
-                          columns=['Name', 'Time'])
+        df = pd.DataFrame(list(zip(all_text, all_times,all_name)),
+                          columns=['Name', 'Time','File_Name'])
 
         df.to_csv(r"C:\Users\Anuj Srivastava\OneDrive\Desktop\report.csv")
 

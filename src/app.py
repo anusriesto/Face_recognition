@@ -238,5 +238,6 @@ class RegistrationModule:
 
 logFileName = "ProceduralLog.txt"
 regStrtnModule = RegistrationModule(logFileName)
-# regStrtnModule = RegistrationModule
-# regStrtnModule.TrainImages()
+#regStrtnModule = RegistrationModule
+#regStrtnModule.TrainImages()
+

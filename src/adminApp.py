@@ -5,8 +5,6 @@ from tkinter import *
 from PIL import Image, ImageTk
 
 
-
-
 import tkinter.font as font
 import webbrowser
 import random
